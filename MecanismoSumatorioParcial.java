@@ -21,20 +21,25 @@ public class MecanismoSumatorioParcial extends Mecanismo
      */
     public int encripta(int cod){
         int contador = cod - 1;
-        int encriptado = -1;
-        while(cod >= super.getNumero()){
-            encriptado += cod + contador;
-            contador++;
+        int encriptado = cod;
+        while(contador >= super.getNumero()){
+            encriptado += contador;
+            contador--;
         }
         return encriptado;
     }
     
     public int desencripta(int cod){
-        int contador = cod + 1;
-        int desencriptado = -1;
-        while(cod <= super.getNumero()){
-            desencriptado -= cod - contador;
-            contador--;
+        int contador = super.getNumero();
+        int desencriptado = cod;
+        boolean comprobador = false;
+        while(contador != desencriptado && !comprobador){
+            desencriptado -= contador;
+            contador++;
+            if(desencriptado <= 10){
+                comprobador = true;
+                desencriptado = -1;
+            }
         }
         return desencriptado;
     }
